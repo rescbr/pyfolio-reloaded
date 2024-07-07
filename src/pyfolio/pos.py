@@ -22,10 +22,10 @@ try:
     ZIPLINE = True
 except ImportError:
     ZIPLINE = False
-    warnings.warn(
-        'Module "zipline.assets" not found; multipliers will not be applied'
-        " to position notionals."
-    )
+    # warnings.warn(
+    #     'Module "zipline.assets" not found; multipliers will not be applied'
+    #     " to position notionals."
+    # )
 
 
 def get_percent_alloc(values):
@@ -97,8 +97,8 @@ def get_max_median_position_concentration(positions):
     expos = get_percent_alloc(positions)
     expos = expos.drop("cash", axis=1)
 
-    longs = expos.where(expos.applymap(lambda x: x > 0))
-    shorts = expos.where(expos.applymap(lambda x: x < 0))
+    longs = expos.where(expos.map(lambda x: x > 0))
+    shorts = expos.where(expos.map(lambda x: x < 0))
 
     alloc_summary = pd.DataFrame()
     alloc_summary["max_long"] = longs.max(axis=1)
