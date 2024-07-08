@@ -852,7 +852,7 @@ def plot_rolling_returns(
                 is_returns,
                 len(oos_cum_returns),
                 cone_std=cone_std,
-                starting_value=is_cum_returns[-1],
+                starting_value=is_cum_returns.iloc[-1],
             )
 
             cone_bounds = cone_bounds.set_index(oos_cum_returns.index)
